@@ -12,5 +12,7 @@ int main() {
   mallard->performQuack();
   mallard->performFly();
 
+//  std::unique_ptr<AbstractDuck> model = std::make_unique<
+
   return 0;
 }
