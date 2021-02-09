@@ -11,7 +11,7 @@ add_library(dynamic_duck STATIC
 
         ${DD_INCLUDE_DIR}/quack_behavior/quack.cpp
         ${DD_INCLUDE_DIR}/quack_behavior/mute_quack.cpp
-        ${DD_INCLUDE_DIR}/quack_behavior/squeak.cpp include/dynamic_duck/duck/mallard_duck.cpp include/dynamic_duck/duck/mallard_duck.hpp)
+        ${DD_INCLUDE_DIR}/quack_behavior/squeak.cpp include/dynamic_duck/duck/mallard_duck.cpp include/dynamic_duck/duck/mallard_duck.hpp include/dynamic_duck/duck/model_duck.cpp include/dynamic_duck/duck/model_duck.hpp)
 
 target_include_directories(dynamic_duck PUBLIC
         include)
