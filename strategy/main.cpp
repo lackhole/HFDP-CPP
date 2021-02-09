@@ -1,11 +1,16 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include "duck_core.hpp"
-#include "duck_interface.hpp"
+
+#include <dynamic_duck.hpp>
+
 
 int main() {
 
+  std::unique_ptr<AbstractDuck> mallard = std::make_unique<MallardDuck>();
+
+  mallard->performQuack();
+  mallard->performFly();
 
   return 0;
 }
