@@ -6,5 +6,5 @@
 #include "fly_with_wings.hpp"
 
 void FlyWithWings::fly() const {
-  std::cout << "I'm flying!" << std::endl;
+  std::cout << "I'm flying!!" << std::endl;
 }
