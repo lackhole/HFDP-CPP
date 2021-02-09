@@ -17,6 +17,9 @@ class AbstractDuck {
   void performQuack() const;
   void swim() const;
 
+  void setFlyBehavior(std::unique_ptr<FlyBehavior> fb);
+  void setQuackBehavior(std::unique_ptr<QuackBehavior> qb);
+
  protected:
   AbstractDuck& operator = (const AbstractDuck& rhs);
 

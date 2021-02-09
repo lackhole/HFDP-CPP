@@ -28,3 +28,11 @@ void AbstractDuck::performQuack() const {
 void AbstractDuck::swim() const {
   std::cout << "Every duck float on water. Even decoy duck floats." << std::endl;
 }
+
+void AbstractDuck::setFlyBehavior(std::unique_ptr<FlyBehavior> fb) {
+  flyBehavior = std::move(fb);
+}
+
+void AbstractDuck::setQuackBehavior(std::unique_ptr<QuackBehavior> qb) {
+  quackBehavior = std::move(qb);
+}
