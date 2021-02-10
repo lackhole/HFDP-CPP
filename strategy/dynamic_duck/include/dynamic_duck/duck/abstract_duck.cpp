@@ -4,7 +4,6 @@
 
 #include <memory>
 #include <iostream>
-#include "dynamic_duck/duck_core.hpp"
 #include "abstract_duck.hpp"
 #include "dynamic_duck/fly_behavior/fly_behavior.hpp"
 #include "dynamic_duck/quack_behavior/quack_behavior.hpp"

@@ -9,8 +9,8 @@
 #include "dynamic_duck/fly_behavior/fly_with_wings.hpp"
 
 MallardDuck::MallardDuck() {
-  AbstractDuck::quackBehavior = std::make_unique<Quack>();
-  AbstractDuck::flyBehavior = std::make_unique<FlyWithWings>();
+  quackBehavior = std::make_unique<Quack>();
+  flyBehavior = std::make_unique<FlyWithWings>();
 }
 MallardDuck::~MallardDuck() {}
 

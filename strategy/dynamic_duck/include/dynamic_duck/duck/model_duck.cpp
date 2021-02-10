@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <memory>
 #include "dynamic_duck/duck/model_duck.hpp"
 #include "dynamic_duck/fly_behavior/fly_no_way.hpp"
 #include "dynamic_duck/quack_behavior/quack.hpp"

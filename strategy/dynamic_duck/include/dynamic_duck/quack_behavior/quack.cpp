@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "quack.hpp"
+#include "dynamic_duck/quack_behavior/quack.hpp"
 
 void Quack::quack() const {
   std::cout << "Quack" << std::endl;

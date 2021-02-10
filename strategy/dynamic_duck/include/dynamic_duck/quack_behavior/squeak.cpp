@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "squeak.hpp"
+#include "dynamic_duck/quack_behavior/squeak.hpp"
 
 void Squeak::quack() const {
   std::cout << "Squeak" << std::endl;

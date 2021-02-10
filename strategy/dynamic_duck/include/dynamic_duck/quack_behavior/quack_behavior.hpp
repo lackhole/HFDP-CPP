@@ -5,10 +5,9 @@
 #ifndef STRATEGY_DYNAMIC_DUCK_QUACK_BEHAVIOR_QUACK_BEHAVIOR_HPP
 #define STRATEGY_DYNAMIC_DUCK_QUACK_BEHAVIOR_QUACK_BEHAVIOR_HPP
 
-#include "dynamic_duck/duck_core.hpp"
-
 class QuackBehavior {
  public:
+  virtual ~QuackBehavior() = default;
   virtual void quack() const = 0;
 };
 

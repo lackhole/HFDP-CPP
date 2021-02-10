@@ -5,10 +5,9 @@
 #ifndef STRATEGY_DYNAMIC_DUCK_FLY_BEHAVIOR_FLYBEHAVIOR_HPP
 #define STRATEGY_DYNAMIC_DUCK_FLY_BEHAVIOR_FLYBEHAVIOR_HPP
 
-#include "dynamic_duck/duck_core.hpp"
-
 class FlyBehavior {
  public:
+  virtual ~FlyBehavior() = default;
   virtual void fly() const = 0;
 };
 

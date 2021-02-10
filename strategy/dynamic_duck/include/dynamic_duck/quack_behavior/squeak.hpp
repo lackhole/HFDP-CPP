@@ -5,7 +5,7 @@
 #ifndef STRATEGY_DYNAMIC_DUCK_QUACK_BEHAVIOR_SQUEAK_HPP
 #define STRATEGY_DYNAMIC_DUCK_QUACK_BEHAVIOR_SQUEAK_HPP
 
-#include "quack_behavior.hpp"
+#include "dynamic_duck/quack_behavior/quack_behavior.hpp"
 
 class Squeak : public QuackBehavior {
  public:

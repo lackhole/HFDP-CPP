@@ -5,8 +5,6 @@
 #ifndef STRATEGY_DYNAMIC_DUK_HPP
 #define STRATEGY_DYNAMIC_DUK_HPP
 
-#include "dynamic_duck/duck_core.hpp"
-
 #include "dynamic_duck/duck/abstract_duck.hpp"
 #include "dynamic_duck/duck/mallard_duck.hpp"
 #include "dynamic_duck/duck/model_duck.hpp"

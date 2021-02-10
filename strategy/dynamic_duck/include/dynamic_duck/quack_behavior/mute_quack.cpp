@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "mute_quack.hpp"
+#include "dynamic_duck/quack_behavior/mute_quack.hpp"
 
 void MuteQuack::quack() const {
   std::cout << "<< Quiet~ >>" << std::endl;
