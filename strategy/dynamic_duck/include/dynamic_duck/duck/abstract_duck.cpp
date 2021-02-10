@@ -8,7 +8,7 @@
 #include "dynamic_duck/fly_behavior/fly_behavior.hpp"
 #include "dynamic_duck/quack_behavior/quack_behavior.hpp"
 
-AbstractDuck::~AbstractDuck() {}
+AbstractDuck::~AbstractDuck() = default;
 
 AbstractDuck &AbstractDuck::operator = (const AbstractDuck &rhs) {
   *flyBehavior = *rhs.flyBehavior;
