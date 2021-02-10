@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+
 #include "dynamic_duck/fly_behavior/fly_with_wings.h"
 
 void FlyWithWings::fly() const {

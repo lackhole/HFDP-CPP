@@ -6,6 +6,7 @@
 #define STRATEGY_DYNAMIC_DUCK_DUCK_ABSTRACT_DUCK_H_
 
 #include <memory>
+
 #include "dynamic_duck/fly_behavior/fly_behavior.h"
 #include "dynamic_duck/quack_behavior/quack_behavior.h"
 

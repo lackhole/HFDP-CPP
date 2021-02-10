@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+
 #include "dynamic_duck/fly_behavior/fly_no_way.h"
 
 void FlyNoWay::fly() const {

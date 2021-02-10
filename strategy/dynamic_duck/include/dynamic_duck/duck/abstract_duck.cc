@@ -2,9 +2,11 @@
 // Created by cosge on 2021-02-09.
 //
 
+#include "abstract_duck.h"
+
 #include <memory>
 #include <iostream>
-#include "abstract_duck.h"
+
 #include "dynamic_duck/fly_behavior/fly_behavior.h"
 #include "dynamic_duck/quack_behavior/quack_behavior.h"
 
