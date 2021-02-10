@@ -10,7 +10,6 @@
 class ModelDuck : public AbstractDuck {
  public:
   ModelDuck();
-  ~ModelDuck();
 
   void display() override;
 };

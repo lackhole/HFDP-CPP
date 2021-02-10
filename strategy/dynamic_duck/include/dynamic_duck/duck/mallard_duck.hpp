@@ -10,7 +10,6 @@
 class MallardDuck : public AbstractDuck {
  public:
   MallardDuck();
-  ~MallardDuck();
 
   void display() override;
 

@@ -12,7 +12,6 @@ MallardDuck::MallardDuck() {
   quackBehavior = std::make_unique<Quack>();
   flyBehavior = std::make_unique<FlyWithWings>();
 }
-MallardDuck::~MallardDuck() {}
 
 void MallardDuck::display() {
   std::cout << "I am mallard duck" << std::endl;

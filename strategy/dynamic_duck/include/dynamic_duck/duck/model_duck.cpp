@@ -13,8 +13,6 @@ ModelDuck::ModelDuck() {
   quackBehavior = std::make_unique<Quack>();
 }
 
-ModelDuck::~ModelDuck() {}
-
 void ModelDuck::display() {
   std::cout << "I am a model duck" << std::endl;
 }
