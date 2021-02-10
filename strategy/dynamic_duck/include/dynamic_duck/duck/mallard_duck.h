@@ -5,7 +5,7 @@
 #ifndef STRATEGY_DYNAMIC_DUCK_DUCK_MALLARD_DUCK_HPP
 #define STRATEGY_DYNAMIC_DUCK_DUCK_MALLARD_DUCK_HPP
 
-#include "dynamic_duck/duck/abstract_duck.hpp"
+#include "dynamic_duck/duck/abstract_duck.h"
 
 class MallardDuck : public AbstractDuck {
  public:

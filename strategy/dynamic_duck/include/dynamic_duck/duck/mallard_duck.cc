@@ -4,9 +4,9 @@
 
 #include <iostream>
 #include <memory>
-#include "dynamic_duck/duck/mallard_duck.hpp"
-#include "dynamic_duck/quack_behavior/quack.hpp"
-#include "dynamic_duck/fly_behavior/fly_with_wings.hpp"
+#include "dynamic_duck/duck/mallard_duck.h"
+#include "dynamic_duck/quack_behavior/quack.h"
+#include "dynamic_duck/fly_behavior/fly_with_wings.h"
 
 MallardDuck::MallardDuck() {
   quackBehavior = std::make_unique<Quack>();

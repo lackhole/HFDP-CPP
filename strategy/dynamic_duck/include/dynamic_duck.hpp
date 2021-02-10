@@ -5,17 +5,17 @@
 #ifndef STRATEGY_DYNAMIC_DUK_HPP
 #define STRATEGY_DYNAMIC_DUK_HPP
 
-#include "dynamic_duck/duck/abstract_duck.hpp"
-#include "dynamic_duck/duck/mallard_duck.hpp"
-#include "dynamic_duck/duck/model_duck.hpp"
+#include "dynamic_duck/duck/abstract_duck.h"
+#include "dynamic_duck/duck/mallard_duck.h"
+#include "dynamic_duck/duck/model_duck.h"
 
-#include "dynamic_duck/fly_behavior/fly_behavior.hpp"
-#include "dynamic_duck/fly_behavior/fly_no_way.hpp"
-#include "dynamic_duck/fly_behavior/fly_rocket_powered.hpp"
-#include "dynamic_duck/fly_behavior/fly_with_wings.hpp"
+#include "dynamic_duck/fly_behavior/fly_behavior.h"
+#include "dynamic_duck/fly_behavior/fly_no_way.h"
+#include "dynamic_duck/fly_behavior/fly_rocket_powered.h"
+#include "dynamic_duck/fly_behavior/fly_with_wings.h"
 
-#include "dynamic_duck/quack_behavior/quack_behavior.hpp"
-#include "dynamic_duck/quack_behavior/quack.hpp"
-#include "dynamic_duck/quack_behavior/squeak.hpp"
+#include "dynamic_duck/quack_behavior/quack_behavior.h"
+#include "dynamic_duck/quack_behavior/quack.h"
+#include "dynamic_duck/quack_behavior/squeak.h"
 
 #endif //STRATEGY_DYNAMIC_DUK_HPP
