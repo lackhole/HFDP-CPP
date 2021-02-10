@@ -2,8 +2,8 @@
 // Created by cosge on 2021-02-09.
 //
 
-#ifndef STRATEGY_DYNAMIC_DUCK_DUCK_ABSTRACT_DUCK_HPP
-#define STRATEGY_DYNAMIC_DUCK_DUCK_ABSTRACT_DUCK_HPP
+#ifndef STRATEGY_DYNAMIC_DUCK_DUCK_ABSTRACT_DUCK_H_
+#define STRATEGY_DYNAMIC_DUCK_DUCK_ABSTRACT_DUCK_H_
 
 #include <memory>
 #include "dynamic_duck/fly_behavior/fly_behavior.h"
@@ -30,4 +30,4 @@ class AbstractDuck {
 };
 
 
-#endif //STRATEGY_DYNAMIC_DUCK_DUCK_ABSTRACT_DUCK_HPP
+#endif //STRATEGY_DYNAMIC_DUCK_DUCK_ABSTRACT_DUCK_H_

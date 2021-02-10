@@ -2,8 +2,8 @@
 // Created by cosge on 2021-02-09.
 //
 
-#ifndef STRATEGY_DYNAMIC_DUCK_FLY_BEHAVIOR_FLY_NO_WAY_HPP
-#define STRATEGY_DYNAMIC_DUCK_FLY_BEHAVIOR_FLY_NO_WAY_HPP
+#ifndef STRATEGY_DYNAMIC_DUCK_FLY_BEHAVIOR_FLY_NO_WAY_H_
+#define STRATEGY_DYNAMIC_DUCK_FLY_BEHAVIOR_FLY_NO_WAY_H_
 
 #include "dynamic_duck/fly_behavior/fly_behavior.h"
 
@@ -13,4 +13,4 @@ class FlyNoWay : public FlyBehavior{
 };
 
 
-#endif //STRATEGY_DYNAMIC_DUCK_FLY_BEHAVIOR_FLY_NO_WAY_HPP
+#endif //STRATEGY_DYNAMIC_DUCK_FLY_BEHAVIOR_FLY_NO_WAY_H_
