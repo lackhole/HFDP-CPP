@@ -22,6 +22,7 @@ class AbstractDuck {
 
  protected:
   AbstractDuck& operator = (const AbstractDuck& rhs);
+  AbstractDuck& operator = (AbstractDuck&& rhs) = default;
 
   std::unique_ptr<FlyBehavior> flyBehavior;
   std::unique_ptr<QuackBehavior> quackBehavior;
