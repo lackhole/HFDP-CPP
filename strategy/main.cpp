@@ -26,6 +26,14 @@ int main() {
   ModelDuck d2 = d1;
   d2.performFly();
 
+  // *mallard = *model; blocked!
+  try {
+    dynamic_cast<ModelDuck&>(*mallard) =
+        dynamic_cast<const ModelDuck&>(*model);
+  }
+  catch (const std::exception& e){
+    std::cout << "Bad casting" << std::endl;
+  }
 
   return 0;
 }
