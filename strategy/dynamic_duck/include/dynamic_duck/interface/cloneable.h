@@ -10,6 +10,8 @@
 template<typename Derived>
 class Cloneable {
  public:
+  virtual ~Cloneable() = default;
+
   inline std::unique_ptr<Derived> clone() const {
     return std::unique_ptr<Derived>(clone_impl());
   }
