@@ -23,6 +23,9 @@ class AbstractDuck {
   void setQuackBehavior(std::unique_ptr<QuackBehavior> qb);
 
  protected:
+  AbstractDuck() = default;
+  AbstractDuck(const AbstractDuck& rhs);
+  AbstractDuck(AbstractDuck&& rhs) = default;
   AbstractDuck& operator = (const AbstractDuck& rhs);
   AbstractDuck& operator = (AbstractDuck&& rhs) = default;
 

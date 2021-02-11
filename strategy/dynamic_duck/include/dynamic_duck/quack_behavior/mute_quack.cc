@@ -9,3 +9,7 @@
 void MuteQuack::quack() const {
   std::cout << "<< Quiet~ >>" << std::endl;
 }
+
+MuteQuack* MuteQuack::clone_impl() const {
+  return new MuteQuack(*this);
+}

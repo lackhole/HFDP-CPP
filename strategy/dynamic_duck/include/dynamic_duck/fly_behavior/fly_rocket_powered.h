@@ -10,6 +10,9 @@
 class FlyRocketPowered : public FlyBehavior {
  public:
   void fly() const override;
+
+ protected:
+  FlyRocketPowered* clone_impl() const override;
 };
 
 

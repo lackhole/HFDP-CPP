@@ -9,3 +9,7 @@
 void FlyWithWings::fly() const {
   std::cout << "I'm flying!!" << std::endl;
 }
+
+FlyWithWings* FlyWithWings::clone_impl() const {
+  return new FlyWithWings(*this);
+}

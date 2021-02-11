@@ -7,9 +7,11 @@
 
 #include "dynamic_duck/fly_behavior/fly_behavior.h"
 
-class FlyNoWay : public FlyBehavior{
+class FlyNoWay : public FlyBehavior {
  public:
   void fly() const override;
+ protected:
+  FlyNoWay* clone_impl() const override;
 };
 
 

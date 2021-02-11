@@ -10,6 +10,9 @@
 class Squeak : public QuackBehavior {
  public:
   void quack() const override;
+
+ protected:
+  Squeak* clone_impl() const override;
 };
 
 
