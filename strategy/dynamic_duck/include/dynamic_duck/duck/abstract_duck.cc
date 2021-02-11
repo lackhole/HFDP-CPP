@@ -12,9 +12,14 @@
 
 AbstractDuck::~AbstractDuck() = default;
 
-AbstractDuck &AbstractDuck::operator = (const AbstractDuck &rhs) {
-  *flyBehavior = *rhs.flyBehavior;
-  *quackBehavior = *rhs.quackBehavior;
+//AbstractDuck::AbstractDuck(const AbstractDuck& rhs)
+//{
+//
+//}
+
+AbstractDuck& AbstractDuck::operator = (const AbstractDuck &rhs) {
+  flyBehavior.reset(rhs.flyBehavior.get());
+  quackBehavior.reset(rhs.quackBehavior.get());
   return *this;
 }
 
