@@ -17,6 +17,9 @@ int main() {
   model->setFlyBehavior(std::make_unique<FlyRocketPowered>());
   model->performFly();
 
+  model = std::make_unique<MallardDuck>();
+  model->performQuack();
+
   std::cout << "====================" << std::endl;
   ModelDuck d1;
   d1.performFly();
