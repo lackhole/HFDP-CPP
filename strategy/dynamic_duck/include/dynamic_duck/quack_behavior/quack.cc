@@ -9,6 +9,3 @@
 void Quack::quack() const {
   std::cout << "Quack" << std::endl;
 }
-Quack* Quack::clone_impl() const {
-  return new Quack(*this);
-}

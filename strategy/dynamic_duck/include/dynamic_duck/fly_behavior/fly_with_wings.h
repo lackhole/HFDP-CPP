@@ -10,9 +10,6 @@
 class FlyWithWings : public FlyBehavior {
  public:
   void fly() const override;
-
- protected:
-  FlyWithWings *clone_impl() const override;
 };
 
 

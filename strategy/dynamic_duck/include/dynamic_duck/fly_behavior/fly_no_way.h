@@ -10,8 +10,6 @@
 class FlyNoWay : public FlyBehavior {
  public:
   void fly() const override;
- protected:
-  FlyNoWay* clone_impl() const override;
 };
 
 

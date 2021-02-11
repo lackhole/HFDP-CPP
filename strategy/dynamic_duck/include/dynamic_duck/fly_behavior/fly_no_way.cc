@@ -9,7 +9,3 @@
 void FlyNoWay::fly() const {
   std::cout << "I can't fly" << std::endl;
 }
-
-FlyNoWay* FlyNoWay::clone_impl() const {
-  return new FlyNoWay(*this);
-}

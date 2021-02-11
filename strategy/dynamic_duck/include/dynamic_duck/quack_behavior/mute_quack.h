@@ -10,9 +10,6 @@
 class MuteQuack : public QuackBehavior {
  public:
   void quack() const override;
-
- protected:
-  MuteQuack* clone_impl() const override;
 };
 
 

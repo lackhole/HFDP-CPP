@@ -9,7 +9,3 @@
 void Squeak::quack() const {
   std::cout << "Squeak" << std::endl;
 }
-
-Squeak* Squeak::clone_impl() const {
-  return new Squeak(*this);
-}

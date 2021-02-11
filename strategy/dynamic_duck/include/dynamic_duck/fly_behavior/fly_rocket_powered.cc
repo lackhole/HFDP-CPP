@@ -9,6 +9,3 @@
 void FlyRocketPowered::fly() const {
   std::cout << "Fly rocket powered" << std::endl;
 }
-FlyRocketPowered* FlyRocketPowered::clone_impl() const {
-  return new FlyRocketPowered(*this);
-}

@@ -10,9 +10,6 @@
 class Quack : public QuackBehavior {
  public:
   void quack() const override;
-
- protected:
-  Quack* clone_impl() const override;
 };
 
 

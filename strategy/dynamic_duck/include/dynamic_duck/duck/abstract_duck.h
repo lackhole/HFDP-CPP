@@ -24,13 +24,13 @@ class AbstractDuck {
 
  protected:
   AbstractDuck() = default;
-  AbstractDuck(const AbstractDuck& rhs);
+  AbstractDuck(const AbstractDuck& rhs) = default;
   AbstractDuck(AbstractDuck&& rhs) = default;
-  AbstractDuck& operator = (const AbstractDuck& rhs);
+  AbstractDuck& operator = (const AbstractDuck& rhs) = default;
   AbstractDuck& operator = (AbstractDuck&& rhs) = default;
 
-  std::unique_ptr<FlyBehavior> flyBehavior;
-  std::unique_ptr<QuackBehavior> quackBehavior;
+  std::shared_ptr<FlyBehavior> flyBehavior;
+  std::shared_ptr<QuackBehavior> quackBehavior;
 };
 
 
