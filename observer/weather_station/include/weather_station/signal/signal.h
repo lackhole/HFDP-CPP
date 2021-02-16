@@ -13,12 +13,17 @@ template<typename Func, typename Key = int>
 class Signal {
  public:
   using func_type = std::function<Func>;
-  using key_type = int;
+  using result_type = typename func_type::result_type;
+  using argument_type = typename func_type::argument_type;
+  using key_type = Key;
   using container_type = std::map<key_type, func_type>;
   using mutex_type = std::mutex;
 
   template<typename F>
   key_type connect(F f);
+
+  template<typename F>
+  key_type connect(key_type k, F f);
 
   bool disconnect(key_type k);
 
@@ -40,6 +45,16 @@ Signal<Func, Key>::connect(F f) {
   connections[new_key] = std::move(f);
   ++key;
   return new_key;
+}
+
+template<typename Func, typename Key>
+template<typename F>
+typename Signal<Func, Key>::key_type
+Signal<Func, Key>::connect(Signal::key_type k, F f) {
+  std::lock_guard<mutex_type> lck(m);
+  connections[k] = std::move(f);
+  key = std::max(k, key) + 1;
+  return k;
 }
 
 template<typename Func, typename Key>

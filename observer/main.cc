@@ -1,34 +1,20 @@
 #include <iostream>
 #include "weather_station/weather_station.h"
 
-template<typename T>
-T bar() { return T{}; }
-template<> void bar<void>() {}
-
-template<typename T>
-auto foo() {
-  return bar<T>();
-}
-
-void faa(){
-  return void();
-}
-
 int main() {
 
-  Signal<void(std::string)> sig;
+  Signal<void()> sig;
 
-  auto id1 = sig.connect([](auto s){std::cout << "conn 1" << " : " << s << std::endl;});
-//  auto id2 = sig.connect([](auto s){std::cout << "conn 2" << " : " << s << std::endl;});
+  auto id1 = sig.connect([](){std::cout << "conn 1" << std::endl;});
+  auto id2 = sig.connect([](){std::cout << "conn 2" << std::endl;});
 
-  std::string str = "123435";
-  sig(std::move(str));
-  sig(str);
+  sig();
+  sig();
 
   sig.disconnect(id1);
-//  sig.disconnect(id2);
+  sig.disconnect(id2);
 
-  sig(str);
+  sig();
 
   return 0;
 }
