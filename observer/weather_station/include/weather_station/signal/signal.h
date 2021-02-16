@@ -14,7 +14,6 @@ class Signal {
  public:
   using func_type = std::function<Func>;
   using result_type = typename func_type::result_type;
-  using argument_type = typename func_type::argument_type;
   using key_type = Key;
   using container_type = std::map<key_type, func_type>;
   using mutex_type = std::mutex;
