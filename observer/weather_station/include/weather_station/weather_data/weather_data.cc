@@ -12,4 +12,5 @@ void WeatherData::setMeasurements(float temperature, float humidity, float press
   this->temperature = temperature;
   this->humidity = humidity;
   this->pressure = pressure;
+  measurementsChanged();
 }
