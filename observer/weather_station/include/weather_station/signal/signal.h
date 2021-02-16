@@ -17,6 +17,7 @@ class Signal {
   using key_type = Key;
   using container_type = std::map<key_type, func_type>;
   using mutex_type = std::mutex;
+  using signal_type = Signal<func_type, key_type>;
 
   template<typename F>
   key_type connect(F f);
