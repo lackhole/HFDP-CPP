@@ -17,7 +17,6 @@ void CurrentConditionDisplay::display() {
 CurrentConditionDisplay::CurrentConditionDisplay(WeatherData &weatherData)
 : weatherData(weatherData) {
   callback_key = weatherData.connect([this](const WeatherData& w) {
-    std::cout << this << std::endl;
     onUpdate(w);
   });
 }
