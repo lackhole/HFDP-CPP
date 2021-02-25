@@ -6,7 +6,7 @@
 
 #include "dynamic_duck/fly_behavior/fly_rocket_powered.h"
 
-namespace strategy{
+namespace strategy {
 namespace dynamic_duck{
 
 void FlyRocketPowered::fly() const {

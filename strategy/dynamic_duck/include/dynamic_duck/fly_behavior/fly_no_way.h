@@ -7,7 +7,7 @@
 
 #include "dynamic_duck/fly_behavior/fly_behavior.h"
 
-namespace strategy{
+namespace strategy {
 namespace dynamic_duck{
 
 class FlyNoWay : public FlyBehavior {

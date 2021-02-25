@@ -10,7 +10,7 @@
 #include "dynamic_duck/quack_behavior/quack.h"
 #include "dynamic_duck/fly_behavior/fly_with_wings.h"
 
-namespace strategy{
+namespace strategy {
 namespace dynamic_duck{
 
 MallardDuck::MallardDuck() {

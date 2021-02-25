@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-namespace strategy{
+namespace strategy {
 namespace dynamic_duck{
 
 void Squeak::quack() const {

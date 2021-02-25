@@ -10,7 +10,7 @@
 #include "dynamic_duck/fly_behavior/fly_behavior.h"
 #include "dynamic_duck/quack_behavior/quack_behavior.h"
 
-namespace strategy{
+namespace strategy {
 namespace dynamic_duck{
 
 class AbstractDuck {

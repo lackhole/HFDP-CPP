@@ -7,7 +7,7 @@
 
 #include "dynamic_duck/quack_behavior/quack_behavior.h"
 
-namespace strategy{
+namespace strategy {
 namespace dynamic_duck{
 
 class MuteQuack : public QuackBehavior {

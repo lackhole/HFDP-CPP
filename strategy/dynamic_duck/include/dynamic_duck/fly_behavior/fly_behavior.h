@@ -5,7 +5,7 @@
 #ifndef STRATEGY_DYNAMIC_DUCK_FLY_BEHAVIOR_FLYBEHAVIOR_H_
 #define STRATEGY_DYNAMIC_DUCK_FLY_BEHAVIOR_FLYBEHAVIOR_H_
 
-namespace strategy{
+namespace strategy {
 namespace dynamic_duck{
 
 class FlyBehavior {

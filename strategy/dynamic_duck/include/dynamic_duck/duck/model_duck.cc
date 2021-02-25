@@ -10,7 +10,7 @@
 #include "dynamic_duck/fly_behavior/fly_no_way.h"
 #include "dynamic_duck/quack_behavior/quack.h"
 
-namespace strategy{
+namespace strategy {
 namespace dynamic_duck{
 
 ModelDuck::ModelDuck() {

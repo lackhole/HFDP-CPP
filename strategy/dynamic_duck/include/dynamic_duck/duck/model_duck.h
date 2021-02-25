@@ -7,7 +7,7 @@
 
 #include "dynamic_duck/duck/abstract_duck.h"
 
-namespace strategy{
+namespace strategy {
 namespace dynamic_duck{
 
 class ModelDuck : public AbstractDuck {

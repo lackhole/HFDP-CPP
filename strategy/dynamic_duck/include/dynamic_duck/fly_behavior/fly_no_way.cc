@@ -6,7 +6,7 @@
 
 #include "dynamic_duck/fly_behavior/fly_no_way.h"
 
-namespace strategy{
+namespace strategy {
 namespace dynamic_duck{
 
 void FlyNoWay::fly() const {
