@@ -6,6 +6,12 @@
 
 #include <iostream>
 
+namespace strategy{
+namespace dynamic_duck{
+
 void Squeak::quack() const {
   std::cout << "Squeak" << std::endl;
 }
+
+} // namespace dynamic_duck
+} // namespace strategy

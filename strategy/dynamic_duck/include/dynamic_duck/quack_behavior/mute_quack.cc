@@ -6,6 +6,12 @@
 
 #include <iostream>
 
+namespace strategy{
+namespace dynamic_duck{
+
 void MuteQuack::quack() const {
   std::cout << "<< Quiet~ >>" << std::endl;
 }
+
+} // namespace dynamic_duck
+} // namespace strategy

@@ -7,10 +7,15 @@
 
 #include "dynamic_duck/quack_behavior/quack_behavior.h"
 
+namespace strategy{
+namespace dynamic_duck{
+
 class Squeak : public QuackBehavior {
  public:
   void quack() const override;
 };
 
+} // namespace dynamic_duck
+} // namespace strategy
 
 #endif //STRATEGY_DYNAMIC_DUCK_QUACK_BEHAVIOR_SQUEAK_H_

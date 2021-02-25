@@ -10,6 +10,9 @@
 #include "dynamic_duck/fly_behavior/fly_behavior.h"
 #include "dynamic_duck/quack_behavior/quack_behavior.h"
 
+namespace strategy{
+namespace dynamic_duck{
+
 AbstractDuck::~AbstractDuck() = default;
 
 void AbstractDuck::performFly() const {
@@ -31,3 +34,6 @@ void AbstractDuck::setFlyBehavior(std::unique_ptr<FlyBehavior> fb) {
 void AbstractDuck::setQuackBehavior(std::unique_ptr<QuackBehavior> qb) {
   quackBehavior = std::move(qb);
 }
+
+} // namespace dynamic_duck
+} // namespace strategy

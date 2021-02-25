@@ -10,6 +10,9 @@
 #include "dynamic_duck/fly_behavior/fly_behavior.h"
 #include "dynamic_duck/quack_behavior/quack_behavior.h"
 
+namespace strategy{
+namespace dynamic_duck{
+
 class AbstractDuck {
  public:
   virtual ~AbstractDuck();
@@ -33,5 +36,6 @@ class AbstractDuck {
   std::shared_ptr<QuackBehavior> quackBehavior;
 };
 
+}} // namespace strategy::dynamic_duck
 
 #endif //STRATEGY_DYNAMIC_DUCK_DUCK_ABSTRACT_DUCK_H_
