@@ -2,18 +2,20 @@
 // Created by cosge on 2021-02-25.
 //
 
-#ifndef STRATEGY_FLY_NO_WAY_H
-#define STRATEGY_FLY_NO_WAY_H
+#ifndef STRATEGY_STATIC_DUCK_FLY_BEHAVIOR_FLY_NO_WAY_H_
+#define STRATEGY_STATIC_DUCK_FLY_BEHAVIOR_FLY_NO_WAY_H_
 
-namespace strategy{
+#include <iostream>
+
+namespace strategy {
 namespace static_duck{
 
 class FlyNoWay {
  public:
-
+  void fly() const;
 };
 
 } // namespace static_duck
 } // namespace strategy
 
-#endif //STRATEGY_FLY_NO_WAY_H
+#endif //STRATEGY_STATIC_DUCK_FLY_BEHAVIOR_FLY_NO_WAY_H_
