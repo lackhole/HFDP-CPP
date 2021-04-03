@@ -7,6 +7,8 @@
 
 #include "weather_station_standard/observer/forward_declare.h"
 
+#include <memory>
+
 namespace wss {
 
 template<typename R, typename ...Args>
@@ -17,6 +19,27 @@ class Observer<R(Args...)> {
 
   virtual return_type update(Args... args) = 0;
 };
+
+template<typename Derived, typename ...Args>
+inline
+std::unique_ptr<Observer<typename Derived::function_sig>>
+make_unique_observer(Args&&... args) {
+  return std::make_unique<Derived>(std::forward<Args>(args)...);
+}
+
+template<typename Derived, typename ...Args>
+inline
+std::shared_ptr<Observer<typename Derived::function_sig>>
+make_shared_observer(Args&&... args) {
+  return std::make_shared<Derived>(std::forward<Args>(args)...);
+}
+
+template<typename Derived, typename ...Args>
+inline
+std::shared_ptr<Observer<typename Derived::function_sig>>
+make_shared_delayed_observer(Args&&... args) {
+  return std::make_unique<Derived>(std::forward<Args>(args)...);
+}
 
 }
 

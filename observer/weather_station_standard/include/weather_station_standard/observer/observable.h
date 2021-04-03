@@ -6,80 +6,80 @@
 #define WEATHER_STATION_STANDARD_OBSERVER_OBSERVABLE_H_
 
 #include "weather_station_standard/observer/forward_declare.h"
-#include <type_traits>
-#include <cassert>
+#include <memory>
 
 namespace wss {
 
-namespace internal {
-
-template<typename ...Args>
-using void_t = void;
-
-template<typename T, typename = void> struct is_indirect_accessible : public std::is_pointer<T> {};
-template<typename T> struct is_indirect_accessible<T, void_t<decltype(std::declval<T>().operator->())>> : public std::true_type {};
-
-template<typename T>
-using is_indirect_accessible_t = typename is_indirect_accessible<T>::type;
-
-template<typename T>
-constexpr bool is_indirect_accessible_v = is_indirect_accessible<T>::value;
-
-}
-
-template<typename R, typename ...Args, typename KeyType, typename ContainerType>
-class Observable<R(Args...), KeyType, ContainerType> {
+template<typename R, typename ...Args, typename KeyType, typename SetType>
+class Observable<R(Args...), KeyType, SetType> {
  public:
   using function_sig = R(Args...);
   using return_type = R;
 
   using key_type = KeyType;
-  using container_type = ContainerType;
+  using set_type = SetType;
 
   Observable() = default;
+  virtual ~Observable() = default;
 
-  bool removeObserver(key_type observer) {
+  inline bool removeObserver(key_type observer) {
     return observers.erase(observer);
   }
 
-  bool registerObserver(key_type observer) {
-    auto p = observers.emplace(observer);
-    return p.second;
+  inline bool registerObserver(key_type observer) {
+    return observers.emplace(observer).second;
+  }
+
+  inline bool isRegistered(const key_type observer) const {
+    return observers.find(observer) != observers.cend();
   }
 
   void notifyObservers(Args&&... args) {
     if(isChanged()) {
-      for(auto& observer : observers) {
-        onUpdate(observer, args...);
+      if(!observers.empty()) {
+        auto it = observers.begin();
+
+        for(;it != std::prev(observers.end()); ++it)
+          onUpdate(*it, args...);
+
+        // perfect forward arguments to the last observer
+        onUpdate(*it, std::forward<Args>(args)...);
       }
       clearChanged();
     }
-  }
-
-  virtual void onUpdate(key_type observer, Args... args) {
-    onUpdateImpl(internal::is_indirect_accessible_t<key_type>{}, observer, args...);
-  }
-
-  bool isRegistered(const key_type observer) const {
-    return observers.find(observer) != observers.cend();
   }
 
   inline void setChanged() { changed = true; }
   inline void clearChanged() { changed = false; }
   inline bool isChanged() const { return changed; }
 
- private:
-  void onUpdateImpl(std::true_type, key_type observer, Args... args) {
-    observer->update(args...);
-  }
+ protected:
+  virtual void onUpdate(key_type observer, Args... args) = 0;
 
-  void onUpdateImpl(std::false_type, key_type observer, Args... args) {
-    assert(((void)"You have to override your own Observable::onUpdate(key_type observer, Args... args)", false));
-  }
+ private:
 
   bool changed = false;
-  container_type observers;
+  set_type observers;
 };
+
+template<typename Derived, typename ...Args>
+inline
+std::unique_ptr<Observable<typename Derived::function_sig,
+                           typename Derived::key_type,
+                           typename Derived::set_type>>
+make_unique_observable(Args&&... args) {
+  return std::make_unique<Derived>(std::forward<Args>(args)...);
+}
+
+template<typename Derived, typename ...Args>
+inline
+std::shared_ptr<Observable<typename Derived::function_sig,
+                           typename Derived::key_type,
+                           typename Derived::set_type>>
+make_shared_observable(Args&&... args) {
+  return std::make_unique<Derived>(std::forward<Args>(args)...);
+}
+
 
 }
 
