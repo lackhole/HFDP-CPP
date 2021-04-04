@@ -11,6 +11,7 @@
 
 namespace wss {
 
+// pull observable
 template<typename R, typename DerivedPtr, typename KeyType, typename SetType>
 class Observable<R(DerivedPtr), KeyType, SetType> {
  public:
@@ -21,7 +22,7 @@ class Observable<R(DerivedPtr), KeyType, SetType> {
   using key_type              = KeyType;
   using set_type              = SetType;
 
-  virtual ~Observable() = default;
+  virtual ~Observable() = 0;
 
   inline bool removeObserver(key_type observer) {
     return observers.erase(observer);
@@ -56,6 +57,8 @@ class Observable<R(DerivedPtr), KeyType, SetType> {
   set_type observers;
 };
 
+// TODO: inherit or specialize?
+// push & pull observable
 template<typename R, typename ...Args, typename DerivedPtr, typename KeyType, typename SetType>
 class Observable<R(DerivedPtr, Args...), KeyType, SetType> : public Observable<R(DerivedPtr), KeyType, SetType> {
  public:
@@ -68,7 +71,7 @@ class Observable<R(DerivedPtr, Args...), KeyType, SetType> : public Observable<R
 
   using base = Observable<R(DerivedPtr), KeyType, SetType>;
 
-  virtual ~Observable() = default;
+  virtual ~Observable() = 0;
 
 
   using base::removeObserver;
@@ -100,6 +103,13 @@ class Observable<R(DerivedPtr, Args...), KeyType, SetType> : public Observable<R
  protected:
   using base::observers;
 };
+
+
+template<typename R, typename DerivedPtr, typename KeyType, typename SetType>
+Observable<R(DerivedPtr), KeyType, SetType>::~Observable() = default;
+
+template<typename R, typename ...Args, typename DerivedPtr, typename KeyType, typename SetType>
+Observable<R(DerivedPtr, Args...), KeyType, SetType>::~Observable() = default;
 
 template<typename Derived, typename ...Args>
 inline
