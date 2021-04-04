@@ -23,7 +23,8 @@ struct ConcreteObservable : public wss::Observable<void(ConcreteObservable*, int
   int data = -1;
 };
 
-struct ConcreteObserver : public wss::Observer<void(int), ConcreteObservable*> {
+struct ConcreteObserver : public wss::Observer<ConcreteObservable> {
+
 
   void update(ConcreteObservable* observable, int args) override {
     std::cout << "Pushed " << args << std::endl;
@@ -32,6 +33,7 @@ struct ConcreteObserver : public wss::Observer<void(int), ConcreteObservable*> {
 
   void update(ConcreteObservable* observable) override {
     std::cout << "Pulled " << observable->pullData() << std::endl;
+    value = observable->pullData();
   }
 };
 
@@ -42,22 +44,36 @@ int main() {
     ConcreteObservable observable;
     ConcreteObserver observer;
 
-    observable.registerObserver(&observer);
-
-    observable.setData(1);
-    observable.notifyObservers();
-
+    // default test
+    value = 0;
     observable.setChanged();
-    observable.notifyObservers(1);
-    TEST_ENSURES(value == 1);
+    observable.notifyObservers(50);
+    TEST_ENSURES(value == 0);
 
-    observable.notifyObservers(2);
-    TEST_ENSURES(value != 2);
+    // registerObserver() test
+    observable.registerObserver(&observer);
+    TEST_ENSURES(observable.isRegistered(&observer) == true);
 
+    // Push test
+    observable.setChanged();
+    observable.notifyObservers(100);
+    TEST_ENSURES(value == 100);
+
+    // Pull test
+    observable.setData(200);
+    observable.setChanged();
+    observable.notifyObservers();
+    TEST_ENSURES(value == 200);
+
+    // setChanged() test
+    observable.notifyObservers(300);
+    TEST_ENSURES(value != 300);
+
+    // removeObserver() test
     observable.removeObserver(&observer);
     observable.setChanged();
-    observable.notifyObservers(3);
-    TEST_ENSURES(value != 3);
+    observable.notifyObservers(400);
+    TEST_ENSURES(value != 400);
   }
 
   {

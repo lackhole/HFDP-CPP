@@ -12,23 +12,45 @@
 namespace wss {
 
 
+template<typename R, typename ObservablePtrType, typename ...Args>
+class ObserverBase<R(ObservablePtrType, Args...)> {
+ public:
+  using function_type   = R(ObservablePtrType, Args...);
+  using return_type     = R;
+
+  virtual ~ObserverBase() = 0;
+
+  // push observable can override both push and pull
+  virtual return_type update(ObservablePtrType, Args...) {}
+  virtual return_type update(ObservablePtrType) {}
+};
+
+template<typename R, typename ObservablePtrType>
+class ObserverBase<R(ObservablePtrType)> {
+ public:
+  using function_type   = R(ObservablePtrType);
+  using return_type     = R;
+
+  // pull-only observable must override pull-update function
+  virtual return_type update(ObservablePtrType) = 0;
+};
+
+template<typename ObservableType>
+ class Observer : public ObserverBase<typename ObservableType::function_type> {
+ public:
+  using function_type     = typename ObservableType::function_type;
+  using return_type       = typename ObservableType::return_type;
+  using observable_type   = ObservableType;
+
+  virtual ~Observer() = 0;
+};
+
+
 template<typename R, typename ObservableType, typename ...Args>
-class ObserverBase<R(ObservableType, Args...)> {
- public:
-  using function_sig = R(Args...);
-  using return_type = R;
+ObserverBase<R(ObservableType, Args...)>::~ObserverBase() = default;
 
-  virtual return_type update(ObservableType, Args...) {}
-  virtual return_type update(ObservableType) {}
-};
-
-template<typename R, typename ...Args, typename ObservableType>
-class Observer<R(Args...), ObservableType> : public ObserverBase<R(ObservableType, Args...)> {
- public:
-  using function_sig = R(Args...);
-  using return_type = R;
-  using observable_type = ObservableType;
-};
+template<typename ObservableType>
+Observer<ObservableType>::~Observer() = default;
 
 //template<typename Derived, typename ...Args>
 //inline
