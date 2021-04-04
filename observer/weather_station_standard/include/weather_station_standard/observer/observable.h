@@ -87,9 +87,9 @@ class Observable<R(DerivedPtr), KeyType, SetType> : private ObservableBase<R(Der
 
 // push & pull observable
 template<typename R, typename ...Args, typename DerivedPtr, typename KeyType, typename SetType>
-class Observable<R(DerivedPtr, Args...), KeyType, SetType> : private ObservableBase<R(DerivedPtr), KeyType, SetType> {
+class Observable<R(DerivedPtr, Args...), KeyType, SetType> : private ObservableBase<R(DerivedPtr, Args...), KeyType, SetType> {
  public:
-  using base                  = ObservableBase<R(DerivedPtr), KeyType, SetType>;
+  using base                  = ObservableBase<R(DerivedPtr, Args...), KeyType, SetType>;
 
   using function_type         = typename base::function_type;
   using return_type           = typename base::return_type;

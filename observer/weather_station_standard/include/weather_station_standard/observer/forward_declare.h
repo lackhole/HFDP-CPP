@@ -18,9 +18,6 @@ template<typename FuncType,
          typename SetType = std::set<KeyType>
 > class Observable;
 
-template<typename A, typename B, typename C>
-using PushObservable = Observable<A, B, C>;
-
 }
 
 #endif //WEATHER_STATION_STANDARD_OBSERVER_FORWARD_DECLARE_H_

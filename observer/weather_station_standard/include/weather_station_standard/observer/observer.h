@@ -31,6 +31,8 @@ class ObserverBase<R(ObservablePtrType)> {
   using function_type   = R(ObservablePtrType);
   using return_type     = R;
 
+  virtual ~ObserverBase() = default;
+
   // pull-only observable must override pull-update function
   virtual return_type update(ObservablePtrType) = 0;
 };
