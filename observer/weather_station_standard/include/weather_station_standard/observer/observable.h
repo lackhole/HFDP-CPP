@@ -87,7 +87,7 @@ class Observable<R(DerivedPtr), KeyType, SetType> : private ObservableBase<R(Der
 
 // push & pull observable
 template<typename R, typename ...Args, typename DerivedPtr, typename KeyType, typename SetType>
-class Observable<R(DerivedPtr, Args...), KeyType, SetType> : public ObservableBase<R(DerivedPtr), KeyType, SetType> {
+class Observable<R(DerivedPtr, Args...), KeyType, SetType> : private ObservableBase<R(DerivedPtr), KeyType, SetType> {
  public:
   using base                  = ObservableBase<R(DerivedPtr), KeyType, SetType>;
 
