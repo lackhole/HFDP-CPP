@@ -9,28 +9,29 @@
 
 int value = 0;
 
-struct ConcreteObservable : public wss::Observable<void(int)> {
+struct ConcreteObservable : public wss::Observable<void(ConcreteObservable*, int)> {
  public:
 
- protected:
-  void onUpdate(key_type observer, int args) override {
-    observer->update(args);
+  void setData(int x) {
+    data = x;
   }
+
+  int pullData() {
+    return data;
+  }
+
+  int data = -1;
 };
 
-struct ConcreteObserver : public wss::Observer<void(int)> {
-  void update(int args) override {
-    std::cout << "Get " << args << std::endl;
+struct ConcreteObserver : public wss::Observer<void(int), ConcreteObservable*> {
+
+  void update(ConcreteObservable* observable, int args) override {
+    std::cout << "Pushed " << args << std::endl;
     value = args;
   }
-};
 
-struct ConcreteObservable2 : public wss::Observable<void(int), std::shared_ptr<wss::Observer<void(int)>>> {
- public:
-
- protected:
-  void onUpdate(key_type observer, int args) override {
-    observer->update(args);
+  void update(ConcreteObservable* observable) override {
+    std::cout << "Pulled " << observable->pullData() << std::endl;
   }
 };
 
@@ -42,6 +43,9 @@ int main() {
     ConcreteObserver observer;
 
     observable.registerObserver(&observer);
+
+    observable.setData(1);
+    observable.notifyObservers();
 
     observable.setChanged();
     observable.notifyObservers(1);
@@ -57,13 +61,13 @@ int main() {
   }
 
   {
-    auto observable2 = wss::make_unique_observable<ConcreteObservable2>();
-    auto observer2 = wss::make_shared_observer<ConcreteObserver>();
-    observable2->registerObserver(observer2);
-
-    observable2->setChanged();
-    observable2->notifyObservers(4);
-    TEST_ENSURES(value == 4);
+//    auto observable2 = wss::make_unique_observable<ConcreteObservable2>();
+//    auto observer2 = wss::make_shared_observer<ConcreteObserver>();
+//    observable2->registerObserver(observer2);
+//
+//    observable2->setChanged();
+//    observable2->notifyObservers(4);
+//    TEST_ENSURES(value == 4);
   }
 
 

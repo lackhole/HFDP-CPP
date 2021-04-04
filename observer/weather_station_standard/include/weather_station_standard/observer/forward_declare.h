@@ -9,10 +9,14 @@
 
 namespace wss {
 
-template<typename FuncType> class Observer;
+template<typename Func> class ObserverBase;
 
 template<typename FuncType,
-         typename KeyType = Observer<FuncType>*,
+         typename ObservableType
+> class Observer;
+
+template<typename FuncType,
+         typename KeyType = ObserverBase<FuncType>*,
          typename ContainerType = std::set<KeyType>
 > class Observable;
 

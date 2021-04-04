@@ -11,35 +11,45 @@
 
 namespace wss {
 
-template<typename R, typename ...Args>
-class Observer<R(Args...)> {
+
+template<typename R, typename ObservableType, typename ...Args>
+class ObserverBase<R(ObservableType, Args...)> {
  public:
   using function_sig = R(Args...);
   using return_type = R;
 
-  virtual return_type update(Args... args) = 0;
+  virtual return_type update(ObservableType, Args...) {}
+  virtual return_type update(ObservableType) {}
 };
 
-template<typename Derived, typename ...Args>
-inline
-std::unique_ptr<Observer<typename Derived::function_sig>>
-make_unique_observer(Args&&... args) {
-  return std::make_unique<Derived>(std::forward<Args>(args)...);
-}
+template<typename R, typename ...Args, typename ObservableType>
+class Observer<R(Args...), ObservableType> : public ObserverBase<R(ObservableType, Args...)> {
+ public:
+  using function_sig = R(Args...);
+  using return_type = R;
+  using observable_type = ObservableType;
+};
 
-template<typename Derived, typename ...Args>
-inline
-std::shared_ptr<Observer<typename Derived::function_sig>>
-make_shared_observer(Args&&... args) {
-  return std::make_shared<Derived>(std::forward<Args>(args)...);
-}
-
-template<typename Derived, typename ...Args>
-inline
-std::shared_ptr<Observer<typename Derived::function_sig>>
-make_shared_delayed_observer(Args&&... args) {
-  return std::make_unique<Derived>(std::forward<Args>(args)...);
-}
+//template<typename Derived, typename ...Args>
+//inline
+//std::unique_ptr<Observer<typename Derived::function_sig, typename Derived::observable_type>>
+//make_unique_observer(Args&&... args) {
+//  return std::make_unique<Derived>(std::forward<Args>(args)...);
+//}
+//
+//template<typename Derived, typename ...Args>
+//inline
+//std::shared_ptr<Observer<typename Derived::function_sig, typename Derived::observable_type>>
+//make_shared_observer(Args&&... args) {
+//  return std::make_shared<Derived>(std::forward<Args>(args)...);
+//}
+//
+//template<typename Derived, typename ...Args>
+//inline
+//std::shared_ptr<Observer<typename Derived::function_sig, typename Derived::observable_type>>
+//make_shared_delayed_observer(Args&&... args) {
+//  return std::make_unique<Derived>(std::forward<Args>(args)...);
+//}
 
 }
 
