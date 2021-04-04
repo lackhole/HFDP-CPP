@@ -14,15 +14,15 @@ namespace wss {
 template<typename Func, typename KeyType, typename SetType>
 class ObservableBase;
 
-template<typename R, typename ...Args, typename KeyType, typename SetType>
-class ObservableBase<R(Args...), KeyType, SetType> {
+template<typename R, typename ...Args, typename ObserverType, typename SetType>
+class ObservableBase<R(Args...), ObserverType, SetType> {
  public:
   using function_type         = R(Args...);
   using return_type           = R;
-  using key_type              = KeyType;
+  using observer_type         = ObserverType;
   using set_type              = SetType;
 
-  inline bool removeObserver(key_type observer) {
+  inline bool removeObserver(observer_type observer) {
     return observers.erase(observer);
   }
 
@@ -30,11 +30,11 @@ class ObservableBase<R(Args...), KeyType, SetType> {
     observers.clear();
   }
 
-  inline bool registerObserver(key_type observer) {
+  inline bool registerObserver(observer_type observer) {
     return observers.emplace(observer).second;
   }
 
-  inline bool isRegistered(const key_type observer) const {
+  inline bool isRegistered(const observer_type observer) const {
     return observers.find(observer) != observers.cend();
   }
 
@@ -48,16 +48,17 @@ class ObservableBase<R(Args...), KeyType, SetType> {
 };
 
 // pull observable
-template<typename R, typename DerivedPtr, typename KeyType, typename SetType>
-class Observable<R(DerivedPtr), KeyType, SetType> : private ObservableBase<R(DerivedPtr), KeyType, SetType> {
+template<typename R, typename DerivedPtr, typename ObserverType, typename SetType>
+class Observable<R(DerivedPtr), ObserverType, SetType>
+    : private ObservableBase<R(DerivedPtr), ObserverType, SetType> {
  public:
-  using base                  = ObservableBase<R(DerivedPtr), KeyType, SetType>;
+  using base                  = ObservableBase<R(DerivedPtr), ObserverType, SetType>;
 
   using function_type         = typename base::function_type;
   using return_type           = typename base::return_type;
   using derived_pointer_type  = DerivedPtr;
   using derived_type          = std::remove_pointer_t<derived_pointer_type>;
-  using key_type              = KeyType;
+  using observer_type         = ObserverType;
   using set_type              = SetType;
 
 
@@ -72,6 +73,7 @@ class Observable<R(DerivedPtr), KeyType, SetType> : private ObservableBase<R(Der
   using base::clearChanged;
   using base::isChanged;
 
+  // pull
   void notifyObservers() {
     if(isChanged()) {
       for(auto& observer : observers)
@@ -86,16 +88,17 @@ class Observable<R(DerivedPtr), KeyType, SetType> : private ObservableBase<R(Der
 };
 
 // push & pull observable
-template<typename R, typename ...Args, typename DerivedPtr, typename KeyType, typename SetType>
-class Observable<R(DerivedPtr, Args...), KeyType, SetType> : private ObservableBase<R(DerivedPtr, Args...), KeyType, SetType> {
+template<typename R, typename ...Args, typename DerivedPtr, typename ObserverType, typename SetType>
+class Observable<R(DerivedPtr, Args...), ObserverType, SetType>
+    : private ObservableBase<R(DerivedPtr, Args...), ObserverType, SetType> {
  public:
-  using base                  = ObservableBase<R(DerivedPtr, Args...), KeyType, SetType>;
+  using base                  = ObservableBase<R(DerivedPtr, Args...), ObserverType, SetType>;
 
   using function_type         = typename base::function_type;
   using return_type           = typename base::return_type;
   using derived_pointer_type  = DerivedPtr;
   using derived_type          = std::remove_pointer_t<derived_pointer_type>;
-  using key_type              = KeyType;
+  using observer_type         = ObserverType;
   using set_type              = SetType;
 
   virtual ~Observable() = 0;

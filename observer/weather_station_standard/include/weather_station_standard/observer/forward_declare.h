@@ -13,9 +13,9 @@ template<typename Func> class ObserverBase;
 
 template<typename ObservableType> class Observer;
 
-template<typename FuncType,
-         typename KeyType = ObserverBase<FuncType>*,
-         typename SetType = std::set<KeyType>
+template<typename Func,
+         typename ObserverType = ObserverBase<Func>*,
+         typename SetType = std::set<ObserverType>
 > class Observable;
 
 }
