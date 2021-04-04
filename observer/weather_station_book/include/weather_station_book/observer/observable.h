@@ -2,14 +2,14 @@
 // Created by cosge on 2021-03-03.
 //
 
-#ifndef WEATHER_STATION_STANDARD_OBSERVER_OBSERVABLE_H_
-#define WEATHER_STATION_STANDARD_OBSERVER_OBSERVABLE_H_
+#ifndef WEATHER_STATION_BOOK_OBSERVER_OBSERVABLE_H_
+#define WEATHER_STATION_BOOK_OBSERVER_OBSERVABLE_H_
 
-#include "weather_station_standard/observer/forward_declare.h"
+#include "weather_station_book/observer/forward_declare.h"
 #include <memory>
 #include <type_traits>
 
-namespace wss {
+namespace book {
 
 template<typename Func, typename KeyType, typename SetType>
 class ObservableBase;
@@ -168,6 +168,6 @@ make_shared_observable(Args&&... args) {
 }
 
 
-}
+} // namespace book
 
-#endif //WEATHER_STATION_STANDARD_OBSERVER_OBSERVABLE_H_
+#endif //WEATHER_STATION_BOOK_OBSERVER_OBSERVABLE_H_

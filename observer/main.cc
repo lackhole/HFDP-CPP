@@ -5,12 +5,12 @@
 #include <memory>
 #include <unordered_set>
 
-#include "weather_station_standard/weather_station_standard.h"
+#include "weather_station_book/weather_station.h"
 
 
 
 int main() {
-//  wss::Observable<void(int)> subject;
+//  book::Observable<void(int)> subject;
 //  ConcreteObserver observer;
 //
 //  subject.registerObserver(&observer);

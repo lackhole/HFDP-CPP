@@ -3,13 +3,13 @@
 //
 
 #include "test.hpp"
-#include "weather_station_standard/weather_station_standard.h"
+#include "weather_station_book/weather_station.h"
 
 #include <iostream>
 
 int value = 0;
 
-struct ConcreteObservable : public wss::Observable<void(ConcreteObservable*, int)> {
+struct ConcreteObservable : public book::Observable<void(ConcreteObservable*, int)> {
  public:
 
   void setData(int x) {
@@ -23,7 +23,7 @@ struct ConcreteObservable : public wss::Observable<void(ConcreteObservable*, int
   int data = -1;
 };
 
-struct ConcreteObserver : public wss::Observer<ConcreteObservable> {
+struct ConcreteObserver : public book::Observer<ConcreteObservable> {
 
 
   void update(ConcreteObservable* observable, int args) override {
@@ -77,8 +77,8 @@ int main() {
   }
 
   {
-//    auto observable2 = wss::make_unique_observable<ConcreteObservable2>();
-//    auto observer2 = wss::make_shared_observer<ConcreteObserver>();
+//    auto observable2 = book::make_unique_observable<ConcreteObservable2>();
+//    auto observer2 = book::make_shared_observer<ConcreteObserver>();
 //    observable2->registerObserver(observer2);
 //
 //    observable2->setChanged();

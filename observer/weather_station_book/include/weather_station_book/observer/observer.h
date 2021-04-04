@@ -2,15 +2,14 @@
 // Created by cosge on 2021-03-03.
 //
 
-#ifndef WEATHER_STATION_STANDARD_OBSERVER_OBSERVER_H_
-#define WEATHER_STATION_STANDARD_OBSERVER_OBSERVER_H_
+#ifndef WEATHER_STATION_BOOK_OBSERVER_OBSERVER_H_
+#define WEATHER_STATION_BOOK_OBSERVER_OBSERVER_H_
 
-#include "weather_station_standard/observer/forward_declare.h"
+#include "weather_station_book/observer/forward_declare.h"
 
 #include <memory>
 
-namespace wss {
-
+namespace book {
 
 template<typename R, typename ObservablePtrType, typename ...Args>
 class ObserverBase<R(ObservablePtrType, Args...)> {
@@ -75,6 +74,6 @@ Observer<ObservableType>::~Observer() = default;
 //  return std::make_unique<Derived>(std::forward<Args>(args)...);
 //}
 
-}
+} // namespace book
 
-#endif //WEATHER_STATION_STANDARD_OBSERVER_OBSERVER_H_
+#endif //WEATHER_STATION_BOOK_OBSERVER_OBSERVER_H_

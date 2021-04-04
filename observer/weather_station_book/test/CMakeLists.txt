@@ -6,4 +6,4 @@ macro(MAKE_TEST name target)
     add_test(NAME ${name} COMMAND ${name})
 endmacro()
 
-MAKE_TEST(wss_test wss_test.cc weather_station_standard)
+MAKE_TEST(wss_test wss_test.cc weather_station_book)

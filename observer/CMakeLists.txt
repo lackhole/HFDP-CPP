@@ -8,11 +8,11 @@ if(RUN_TEST)
 endif()
 
 add_subdirectory(weather_station)
-add_subdirectory(weather_station_standard)
+add_subdirectory(weather_station_book)
 
 add_executable(observer main.cc)
 
 target_link_libraries(observer PUBLIC
         weather_station
-        weather_station_standard
+        weather_station_book
         )
