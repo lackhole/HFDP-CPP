@@ -11,18 +11,16 @@
 
 namespace wss {
 
-// pull observable
-template<typename R, typename DerivedPtr, typename KeyType, typename SetType>
-class Observable<R(DerivedPtr), KeyType, SetType> {
+template<typename Func, typename KeyType, typename SetType>
+class ObservableBase;
+
+template<typename R, typename ...Args, typename KeyType, typename SetType>
+class ObservableBase<R(Args...), KeyType, SetType> {
  public:
-  using function_type         = R(DerivedPtr);
+  using function_type         = R(Args...);
   using return_type           = R;
-  using derived_pointer_type  = DerivedPtr;
-  using derived_type          = std::remove_pointer_t<derived_pointer_type>;
   using key_type              = KeyType;
   using set_type              = SetType;
-
-  virtual ~Observable() = 0;
 
   inline bool removeObserver(key_type observer) {
     return observers.erase(observer);
@@ -40,14 +38,6 @@ class Observable<R(DerivedPtr), KeyType, SetType> {
     return observers.find(observer) != observers.cend();
   }
 
-  void notifyObservers() {
-    if(isChanged()) {
-      for(auto& observer : observers)
-        observer->update(static_cast<DerivedPtr>(this));
-      clearChanged();
-    }
-  }
-
   inline void setChanged() { changed = true; }
   inline void clearChanged() { changed = false; }
   inline bool isChanged() const { return changed; }
@@ -57,19 +47,56 @@ class Observable<R(DerivedPtr), KeyType, SetType> {
   set_type observers;
 };
 
-// TODO: inherit or specialize?
-// push & pull observable
-template<typename R, typename ...Args, typename DerivedPtr, typename KeyType, typename SetType>
-class Observable<R(DerivedPtr, Args...), KeyType, SetType> : public Observable<R(DerivedPtr), KeyType, SetType> {
+// pull observable
+template<typename R, typename DerivedPtr, typename KeyType, typename SetType>
+class Observable<R(DerivedPtr), KeyType, SetType> : private ObservableBase<R(DerivedPtr), KeyType, SetType> {
  public:
-  using function_type         = R(DerivedPtr, Args...);
-  using return_type           = R;
+  using base                  = ObservableBase<R(DerivedPtr), KeyType, SetType>;
+
+  using function_type         = typename base::function_type;
+  using return_type           = typename base::return_type;
   using derived_pointer_type  = DerivedPtr;
   using derived_type          = std::remove_pointer_t<derived_pointer_type>;
   using key_type              = KeyType;
   using set_type              = SetType;
 
-  using base = Observable<R(DerivedPtr), KeyType, SetType>;
+
+  virtual ~Observable() = 0;
+
+  using base::removeObserver;
+  using base::removeAllObservers;
+  using base::registerObserver;
+  using base::isRegistered;
+
+  using base::setChanged;
+  using base::clearChanged;
+  using base::isChanged;
+
+  void notifyObservers() {
+    if(isChanged()) {
+      for(auto& observer : observers)
+        observer->update(static_cast<DerivedPtr>(this));
+      clearChanged();
+    }
+  }
+
+
+ protected:
+  using base::observers;
+};
+
+// push & pull observable
+template<typename R, typename ...Args, typename DerivedPtr, typename KeyType, typename SetType>
+class Observable<R(DerivedPtr, Args...), KeyType, SetType> : public ObservableBase<R(DerivedPtr), KeyType, SetType> {
+ public:
+  using base                  = ObservableBase<R(DerivedPtr), KeyType, SetType>;
+
+  using function_type         = typename base::function_type;
+  using return_type           = typename base::return_type;
+  using derived_pointer_type  = DerivedPtr;
+  using derived_type          = std::remove_pointer_t<derived_pointer_type>;
+  using key_type              = KeyType;
+  using set_type              = SetType;
 
   virtual ~Observable() = 0;
 
@@ -77,12 +104,20 @@ class Observable<R(DerivedPtr, Args...), KeyType, SetType> : public Observable<R
   using base::removeObserver;
   using base::removeAllObservers;
   using base::registerObserver;
-
   using base::isRegistered;
-  using base::notifyObservers;
+
   using base::setChanged;
   using base::clearChanged;
   using base::isChanged;
+
+  // pull
+  void notifyObservers() {
+    if(isChanged()) {
+      for(auto& observer : observers)
+        observer->update(static_cast<DerivedPtr>(this));
+      clearChanged();
+    }
+  }
 
   // push
   void notifyObservers(Args&&... args) {
